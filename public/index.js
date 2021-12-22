@@ -10,6 +10,7 @@ const buttonDisc = document.querySelector('.button-disc')
 const input = document.querySelector('.main-input')
 const label = document.getElementById('label')
 const textArea = document.querySelector('.messages')
+textArea.value += '\n'
 
 buttonSend.addEventListener('click', event => {
     event.preventDefault()
@@ -44,14 +45,20 @@ buttonDisc.addEventListener('click', event =>{
 const renderOpening = () => {
     alert('Соединение установлено.')
     label.textContent = `Пользователь "${login}"`
+    label.style.color = '#0000df'
     input.placeholder = 'Введите сообщение...'
     buttonDisc.disabled = false
+    buttonDisc.style.borderStyle = 'solid'
+    buttonDisc.style.opacity = '1'
 }
 const renderClosing = () => {
     alert('Соединение прервано.')
     label.textContent = 'Имя пользователя'
+    label.style.color = 'black'
     input.placeholder = 'Введите имя...'
     buttonDisc.disabled = true
+    buttonDisc.style.borderStyle = 'dashed'
+    buttonDisc.style.opacity = '0.6'
 }
 function createWebSocket(url){
     const websocket = new WebSocket(`ws://${URL}`)
@@ -67,13 +74,13 @@ function createWebSocket(url){
         const message = JSON.parse(event.data)
         switch (message.action){
             case 'connection':
-                textArea.value += `Пользователь "${message.userName}" подключился.\n`
+                textArea.value += `  Пользователь "${message.userName}" подключился.\n`
                 break;
             case 'message':
-                textArea.value += `${message.userName}: ${message.data}\n`
+                textArea.value += `  ${message.userName}: ${message.data}\n`
                 break;
             case 'disconnection':
-                textArea.value += `Пользователь "${message.userName}" отключился.\n`
+                textArea.value += `  Пользователь "${message.userName}" отключился.\n`
                 break;
         }
     }

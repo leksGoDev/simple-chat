@@ -12,22 +12,23 @@
     <div class="container">
         <div class="wrapper">
             <header>
-                <img class="img" src="img/logo.png" alt="" />
-                <p class="under-logo">Укажите ваше имя и начинайте переписку</p>
+                <img class="img-logo" src="img/logo.png" alt="" />
+                <h1 class="h1-under-logo">Simple Chat</h1>
+                <p class="p-under-logo">Укажите ваше имя и начинайте переписку</p>
             </header>
             <main class="content">
-                <section class="section">
-                    <h3 class="above-section">Форма сообщений</h3>
+                <section class="input-section">
+                    <h3 class="h3-above-section" style="text-align: left">Форма сообщений</h3>
                     <form class="form">
-                        <label id="label">Имя пользователя</label>
+                        <label id="label" style="font-weight: 550;">Имя пользователя</label>
                         <input class="main-input" type="text" placeholder="Введите имя...">
-                        <button class="button-send">Отправить</button>
-                        <button class="button-disc" disabled>Отключиться</button>
+                        <button class="button button-send"></button>
+                        <button class="button button-disc" disabled></button>
                     </form>
                 </section>
-                <section class="section">
-                    <h3 class="above-section">Чат</h3>
-                    <textarea class="messages" readonly></textarea>
+                <section class="output-section">
+                    <h3 class="h3-above-section" style="text-align: center">Чат</h3>
+                    <textarea class="messages" readonly ></textarea>
                 </section>
             </main>
             <footer class="footer">ИКПИ-82</footer>
