@@ -1,5 +1,3 @@
-//import createWebSocket from "./websocket.js";
-
 let ws = null
 let login = ''
 const URL = 'localhost:3000'
@@ -72,23 +70,30 @@ function createWebSocket(url){
     }
     websocket.onmessage = (event) => {
         const message = JSON.parse(event.data)
+        const date = new Date()
+        const minutes = date.getMinutes()
+        const hours = date.getHours()
+
         switch (message.action){
             case 'connection':
-                textArea.value += `  Пользователь "${message.userName}" подключился.\n`
+                textArea.value += `  ${hours}:${minutes<10?'0'+minutes:minutes}  ` +
+                  `Пользователь "${message.userName}" подключился.\n`
                 break;
             case 'message':
-                textArea.value += `  ${message.userName}: ${message.data}\n`
+                textArea.value += `  ${hours}:${minutes<10?'0'+minutes:minutes}  ` +
+                  `${message.userName}: ${message.data}\n`
                 break;
             case 'disconnection':
-                textArea.value += `  Пользователь "${message.userName}" отключился.\n`
+                textArea.value += `  ${hours}:${minutes<10?'0'+minutes:minutes}  ` +
+                `Пользователь "${message.userName}" отключился.\n`
                 break;
         }
     }
-    websocket.onclose = (event) => {
+    websocket.onclose = () => {
         renderClosing()
     }
-    websocket.onerror = (event) => {
-
+    websocket.onerror = (error) => {
+        alert(`[error] ${error.message}`)
     }
     return websocket
 }
